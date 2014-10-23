@@ -2,10 +2,10 @@ var storyOfMyLife = {};
 
 storyOfMyLife.init = function(){
 	storyOfMyLife.parseLyrics();
-
 };
 
 storyOfMyLife.parseLyrics = function(){
+	
 	var story = 'The story of my life';
 	story = [story+', ', story+'. '];
 
@@ -51,16 +51,46 @@ storyOfMyLife.parseLyrics = function(){
 			{pre: mainLyrics.preChorus[0]+solos.zayn[0]+mainLyrics.preChorus[1]+solos.zayn[1]+mainLyrics.preChorus[2]+solos.zayn[2]+mainLyrics.preChorus[3]},
 			{bridge: solos.zayn[3]}
 		];
-	var all = story[0]+mainLyrics.chorus[2]+mainLyrics.chorus[3]+story[1];
+	var everyone = story[0]+mainLyrics.chorus[2]+mainLyrics.chorus[3]+story[1];
 
-	console.log(harry[0].verse+liam[0].verse+zayn[0].pre+harry[1].chorus+niall[0].verse+liam[1].verse+louis[0].pre+harry[1].chorus+zayn[1].bridge+niall[1].chorus+all+harry[2].finale);
+	var singVerse1 = function(){
+		$('#verse:nth-of-type(1)').text(harry[0].verse+liam[0].verse);
+		console.log(harry[0].verse+liam[0].verse);
+	};
+	var singVerse2 = function(){
+		$('#verse:nth-of-type(2)').text(niall[0].verse+liam[1].verse)
+		console.log(niall[0].verse+liam[1].verse);
+	};
+	var singPreChorusZayn = function(){
+		$('#pre-chorus:nth-of-type(1)').text(zayn[0].pre)
+		console.log(zayn[0].pre);
+	};
+	var singPreChorusLouis = function(){
+		$('#pre-chorus:nth-of-type(2)').text(louis[0].pre)
+		console.log(louis[0].pre);
+	};
+	var singBridge = function(){
+		$('#bridge').text(zayn[1].bridge)
+		console.log(zayn[1].bridge);
+	};
+	var singChorusHarry = function(){
+		$('.chorus').text(harry[1].chorus)
+		console.log(harry[1].chorus);
+	};
+	var singChorusFinal = function(){
+		$('#finale').text(niall[1].chorus+everyone+harry[2].finale)
+		console.log(niall[1].chorus+everyone+harry[2].finale);
+	};
+
+	console.log(singVerse1()+singPreChorusZayn()+singChorusHarry()+singVerse2()+singPreChorusLouis()+singChorusHarry()+singBridge()+singChorusFinal());
+	$('#lyrics').append(singVerse1(), singPreChorusZayn(), singChorusHarry(), singVerse2(), singPreChorusLouis(), singChorusHarry(), singBridge(), singChorusFinal())
 
 };
 
-
-
-
-
-
-storyOfMyLife();
+		
+$(function(){
+	$('button').on('click', function(){
+		storyOfMyLife.init();
+	});
+});
 
